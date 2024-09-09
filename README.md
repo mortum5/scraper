@@ -34,8 +34,8 @@ Ensure you have Go installed on your machine. You can download it from [here](ht
 ### 2. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/web-scraper-dynamic-display.git
-cd web-scraper-dynamic-display
+git clone https://github.com/mortum5/scraper.git
+cd scraper
 ```
 
 ### 3. Install Dependencies
