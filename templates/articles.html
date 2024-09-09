@@ -1,0 +1,31 @@
+{{ range .Articles }}
+<a href="{{ .Link }}" class="article-item">
+    <article>
+        <h2 class="article-title">{{ .Title }}</h2>
+        <p class="article-line">{{ .Line }}</p>
+    </article>
+</a>
+{{ end }}
+
+<!-- Pagination Controls -->
+<nav class="pagination-controls">
+    {{ if .PrevPage }}
+    <button
+        class="pagination-button"
+        hx-get="/articles?page={{ .PrevPage }}{{ if .Category }}&category={{ .Category }}{{ end }}"
+        hx-target="#articles-list"
+        hx-swap="innerHTML"
+        hx-trigger="click">
+        Previous
+    </button>
+    {{ end }} {{ if .NextPage }}
+    <button
+        class="pagination-button"
+        hx-get="/articles?page={{ .NextPage }}{{ if .Category }}&category={{ .Category }}{{ end }}"
+        hx-target="#articles-list"
+        hx-swap="innerHTML"
+        hx-trigger="click">
+        Next
+    </button>
+    {{ end }}
+</nav>

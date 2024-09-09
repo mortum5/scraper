@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Scraped Articles</title>
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png" />
+        <link rel="manifest" href="/static/site.webmanifest" />
+        <link rel="stylesheet" href="/static/styles.css" />
+        <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/">Scraped Articles</a></h1>
+            <p>Explore the latest articles scraped from Left as Exercise.</p>
+            <div class="dropdown-container">
+                <select id="category-select" class="styled-select" aria-label="Category Selector">
+                    <option value="">All Categories</option>
+                    <!-- Categories will be loaded here -->
+                    {{ range .Categories }}
+                    <option value="{{ . }}">{{ . }}</option>
+                    {{ end }}
+                </select>
+            </div>
+            <div id="view-toggle" class="view-toggle">
+                <button id="list-view" class="toggle-button active">List View</button>
+                <button id="card-view" class="toggle-button">Card View</button>
+            </div>
+        </header>
+
+        <main>
+            <div
+                id="articles-container"
+                hx-trigger="load"
+                hx-get="/articles?page=1"
+                hx-target="#articles-list"
+                hx-swap="innerHTML">
+                <!-- Articles will be loaded here -->
+                <div id="articles-list" class="list-view"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Scraper Project</p>
+        </footer>
+
+        <script>
+            document.getElementById("category-select").addEventListener("change", function () {
+                const category = this.value;
+                const url = category ? `/articles?page=1&category=${category}` : `/articles?page=1`;
+                htmx.ajax("GET", url, {
+                    target: "#articles-list",
+                    swap: "innerHTML",
+                });
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const listViewButton = document.getElementById("list-view");
+                const cardViewButton = document.getElementById("card-view");
+                const articlesList = document.getElementById("articles-list");
+
+                // Set up event listeners for buttons
+                listViewButton.addEventListener("click", function () {
+                    articlesList.classList.remove("card-view");
+                    articlesList.classList.add("list-view");
+
+                    // Update button styles
+                    listViewButton.classList.add("active");
+                    cardViewButton.classList.remove("active");
+                });
+
+                cardViewButton.addEventListener("click", function () {
+                    articlesList.classList.remove("list-view");
+                    articlesList.classList.add("card-view");
+
+                    // Update button styles
+                    cardViewButton.classList.add("active");
+                    listViewButton.classList.remove("active");
+                });
+            });
+        </script>
+    </body>
+</html>

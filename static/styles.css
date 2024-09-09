@@ -1,0 +1,221 @@
+/* General Styles */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Lighter background color for a modern look */
+}
+
+a {
+    text-decoration: none;
+    color: #585959;
+}
+
+h1 a {
+    color: white;
+}
+
+nav.pagination-controls {
+    margin: 2em;
+    grid-column-start: 1;
+}
+
+/* Header Styles */
+header {
+    background-color: #007bff; /* Blue background */
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #007bff; /* Match header background color */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+}
+
+/* Custom Dropdown */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.styled-select {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 0.45em 0.9em;
+    font-size: 0.85em;
+    text-transform: capitalize;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNjY2IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZD0iTTIgNkw4IDEyIDE0IDZ6Ii8+PC9zdmc+);
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%;
+    background-size: 0.65em auto;
+}
+
+.styled-select:hover {
+    border-color: #007bff;
+}
+
+.styled-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Pagination Button Styles */
+.pagination-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 24px; /* Increased padding */
+    margin: 0 10px; /* Increased spacing */
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #0056b3;
+}
+
+/* General container styles */
+#articles-container {
+    padding: 1rem;
+}
+
+/* List View */
+#articles-list.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Add spacing between list items */
+}
+
+/* Card View */
+#articles-list.card-view {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ensure 3 columns */
+    gap: 1.5rem; /* Space between cards */
+}
+
+/* Card styling */
+.article-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.article-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Title styling */
+.article-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+/* Description (first line) styling */
+.article-line {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 900px) {
+    #articles-list.card-view {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+    }
+}
+
+@media (max-width: 600px) {
+    #articles-list.card-view {
+        grid-template-columns: 1fr; /* 1 column for small screens */
+    }
+
+    .article-item {
+        padding: 0.8rem;
+    }
+
+    .article-title {
+        font-size: 1rem;
+    }
+
+    .article-line {
+        font-size: 0.8rem;
+    }
+}
+
+/* Container for the toggle buttons */
+.view-toggle {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0px;
+}
+
+/* Styling for the buttons */
+.toggle-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #333;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+    border-radius: 5px;
+    margin: 0 0.5rem;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Active button style */
+.toggle-button.active {
+    background-color: #4caf50;
+    color: white;
+    border-color: #4caf50;
+}
+
+/* Hover effect: gradient background, subtle scale, and shadow */
+.toggle-button:hover {
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Focus outline for accessibility */
+.toggle-button:focus {
+    outline: 2px solid #4caf50;
+}
+
+/* Responsive Design: Stack buttons on smaller screens */
+@media (max-width: 600px) {
+    .view-toggle {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .toggle-button {
+        margin: 0.5rem 0;
+        width: 80%;
+    }
+}
